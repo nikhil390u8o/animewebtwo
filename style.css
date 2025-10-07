@@ -29,6 +29,28 @@ html, body {
 }
 .brand { color:#fff; font-weight:700; font-size:1.1rem; }
 
+.neon-stop {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff00ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  z-index: 10;
+  transition: 0.2s;
+}
+.neon-stop:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px #ff00ff, 0 0 30px #ff00ff, 0 0 40px #ff00ff;
+}
+
+
 /* Neon button + search */
 .neon-btn {
   background: transparent;
