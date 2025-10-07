@@ -129,12 +129,18 @@ closeModal.addEventListener('click', closePlayer);
 videoModal.addEventListener('click', (e)=>{ if (e.target === videoModal) closePlayer(); });
 
 function closePlayer() {
+  // Stop YouTube iframe
   previewIframe.src = '';
-  previewVideo.pause();
-  previewVideo.src = '';
+
+  // Stop MP4 video completely
+  if (!previewVideo.paused) previewVideo.pause();
+  previewVideo.removeAttribute('src'); // Removes source
+  previewVideo.load(); // Forces unload
+
   videoModal.style.display = 'none';
   videoModal.setAttribute('aria-hidden','true');
 }
+
 
 // Simple slider setup for hero (keeps your existing behavior)
 document.addEventListener('DOMContentLoaded', () => {
