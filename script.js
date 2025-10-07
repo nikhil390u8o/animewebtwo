@@ -4,11 +4,14 @@ const MOVIES = {
     id: 'solo',
     title: 'Solo Leveling',
     type: 'mp4',
-    preview: 'https://files.catbox.moe/sq4lrf.mp4',
+    preview: 'https://files.catbox.moe/9q7xfk.mp4',
     episodes: [
-      { title: 'Episode 1', src: 'https://files.catbox.moe/sq4lrf.mp4' }
+      { title: 'Episode 1', src: 'https://files.catbox.moe/9q7xfk.mp4' }
     ]
   },
+  // Other movies...
+};
+
   naruto: {
     id: 'naruto',
     title: 'Naruto',
