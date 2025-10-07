@@ -105,12 +105,15 @@ function openVideoModal(movie) {
 // change episode by index
 
 stopBtn.addEventListener('click', () => {
-  // Stop MP4 video completely
-  previewVideo.pause();             // stop playback
-  previewVideo.removeAttribute('src'); // remove the video source
-  previewVideo.load();              // force unload
+  // Stop MP4 video
+  previewVideo.pause();
+  previewVideo.removeAttribute('src');
+  previewVideo.load();
 
-  // Hide the modal
+  // Stop YouTube iframe
+  previewIframe.src = '';
+
+  // Hide modal
   videoModal.style.display = 'none';
   videoModal.setAttribute('aria-hidden', 'true');
 });
