@@ -108,21 +108,19 @@ function changeEpisode(index) {
   currentEpisodeIndex = index;
 
   if (movie.type === 'youtube') {
-    // Stop previous iframe
     previewIframe.src = '';
-    // Load new episode
     previewIframe.src = `https://www.youtube.com/embed/${movie.episodes[index].src}?autoplay=1&rel=0`;
   } else {
     // Stop previous video completely
-    previewVideo.pause();
-    previewVideo.removeAttribute('src');
-    previewVideo.load();
+    const newVideo = previewVideo.cloneNode(true);
+    previewVideo.parentNode.replaceChild(newVideo, previewVideo);
 
-    // Load new episode
-    previewVideo.src = movie.episodes[index].src;
-    previewVideo.play().catch(()=>{});
+    // Play new episode
+    newVideo.src = movie.episodes[index].src;
+    newVideo.play().catch(()=>{});
   }
 }
+
 
 // close modal
 function closePlayer() {
