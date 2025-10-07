@@ -101,46 +101,44 @@ function openVideoModal(movie) {
 }
 
 // change episode by index
+// change episode by index
 function changeEpisode(index) {
   const movie = MOVIES[currentMovieId];
   if (!movie) return;
   currentEpisodeIndex = index;
+
   if (movie.type === 'youtube') {
-    const epId = movie.episodes[index].src;
-    previewIframe.src = `https://www.youtube.com/embed/${epId}?autoplay=1&rel=0`;
+    // Stop previous iframe
+    previewIframe.src = '';
+    // Load new episode
+    previewIframe.src = `https://www.youtube.com/embed/${movie.episodes[index].src}?autoplay=1&rel=0`;
   } else {
+    // Stop previous video completely
+    previewVideo.pause();
+    previewVideo.removeAttribute('src');
+    previewVideo.load();
+
+    // Load new episode
     previewVideo.src = movie.episodes[index].src;
     previewVideo.play().catch(()=>{});
   }
 }
 
-// prev / next episode helpers
-prevBtn.addEventListener('click', () => {
-  const movie = MOVIES[currentMovieId]; if (!movie) return;
-  if (currentEpisodeIndex > 0) changeEpisode(currentEpisodeIndex - 1);
-});
-nextBtn.addEventListener('click', () => {
-  const movie = MOVIES[currentMovieId]; if (!movie) return;
-  if (currentEpisodeIndex < movie.episodes.length - 1) changeEpisode(currentEpisodeIndex + 1);
-});
-
 // close modal
-closeModal.addEventListener('click', closePlayer);
-videoModal.addEventListener('click', (e)=>{ if (e.target === videoModal) closePlayer(); });
-
 function closePlayer() {
   // Stop YouTube iframe
   previewIframe.src = '';
 
   // Stop MP4 video completely
-  previewVideo.pause();             // pause playback
-  previewVideo.removeAttribute('src'); // remove the source
-  previewVideo.load();              // force reload/unload
+  previewVideo.pause();
+  previewVideo.removeAttribute('src');
+  previewVideo.load();
 
   // Hide modal
   videoModal.style.display = 'none';
   videoModal.setAttribute('aria-hidden', 'true');
 }
+
 
 
 
