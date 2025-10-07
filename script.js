@@ -133,13 +133,15 @@ function closePlayer() {
   previewIframe.src = '';
 
   // Stop MP4 video completely
-  if (!previewVideo.paused) previewVideo.pause();
-  previewVideo.removeAttribute('src'); // Removes source
-  previewVideo.load(); // Forces unload
+  previewVideo.pause();             // pause playback
+  previewVideo.removeAttribute('src'); // remove the source
+  previewVideo.load();              // force reload/unload
 
+  // Hide modal
   videoModal.style.display = 'none';
-  videoModal.setAttribute('aria-hidden','true');
+  videoModal.setAttribute('aria-hidden', 'true');
 }
+
 
 
 // Simple slider setup for hero (keeps your existing behavior)
