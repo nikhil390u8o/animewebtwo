@@ -103,6 +103,18 @@ function openVideoModal(movie) {
 
 // change episode by index
 // change episode by index
+
+stopBtn.addEventListener('click', () => {
+  // Stop MP4 video completely
+  previewVideo.pause();             // stop playback
+  previewVideo.removeAttribute('src'); // remove the video source
+  previewVideo.load();              // force unload
+
+  // Hide the modal
+  videoModal.style.display = 'none';
+  videoModal.setAttribute('aria-hidden', 'true');
+});
+
 function changeEpisode(index) {
   const movie = MOVIES[currentMovieId];
   if (!movie) return;
