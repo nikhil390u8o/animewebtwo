@@ -41,6 +41,7 @@ const MOVIES = {
 };
 
 // modal elements
+const stopBtn = document.getElementById('stopBtn');
 const videoModal = document.getElementById('videoModal');
 const iframeWrap = document.getElementById('iframeWrap');
 const videoWrap = document.getElementById('videoWrap');
