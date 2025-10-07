@@ -131,14 +131,21 @@ function closePlayer() {
 
   // Stop MP4 video completely
   previewVideo.pause();
-  previewVideo.removeAttribute('src');
+
+  // Remove video source & force reload
+  previewVideo.src = '';
   previewVideo.load();
+
+  // Remove video from DOM and re-add (optional, 100% stop)
+  const parent = previewVideo.parentNode;
+  const newVideo = previewVideo.cloneNode(true);
+  parent.replaceChild(newVideo, previewVideo);
+  previewVideo = newVideo;
 
   // Hide modal
   videoModal.style.display = 'none';
   videoModal.setAttribute('aria-hidden', 'true');
 }
-
 
 
 
