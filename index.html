@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anime toon</title>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- TOPBAR: search + telegram (neon) -->
+  <header class="topbar">
+    <div class="brand">Anime toon</div>
+    <div class="search-bar">
+      <input id="searchInput" placeholder="Search Anime..." />
+      <button class="neon-btn" onclick="window.open('https://t.me/ll_YOUR_PANDA','_blank')">Telegram Channel</button>
+    </div>
+  </header>
+
+  <!-- BACKGROUND (full page is covered by CSS background) -->
+
+  <!-- HERO SLIDER -->
+  <section class="hero-slider">
+    <div class="slide active" data-type="video" data-src="https://files.catbox.moe/bsasma.mp4">
+      <div class="overlay"></div>
+      <div class="slide-content">
+        <h1>Solo Leveling — Rising Hunter</h1>
+        <p>Sung Jinwoo rises from the weakest hunter to humanity's strongest weapon.</p>
+        <div class="buttons">
+          <a class="btn watch" href="#" onclick="openMovieById('solo')">Watch Now</a>
+          <a class="btn download" href="#">Download</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-type="image" data-src="https://files.catbox.moe/rhv8xn.jpg">
+      <div class="overlay"></div>
+      <div class="slide-content">
+        <h1>Naruto</h1>
+        <p>A young ninja dreams to become the strongest and gain respect.</p>
+        <div class="buttons">
+          <a class="btn watch" href="#" onclick="openMovieById('naruto')">Watch Now</a>
+          <a class="btn download" href="#">Download</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide" data-type="image" data-src="https://files.catbox.moe/kivtl4.jpg">
+      <div class="overlay"></div>
+      <div class="slide-content">
+        <h1>Demon Slayer</h1>
+        <p>A boy becomes a demon slayer to avenge his family and protect his sister.</p>
+        <div class="buttons">
+          <a class="btn watch" href="#" onclick="openMovieById('demon')">Watch Now</a>
+          <a class="btn download" href="#">Download</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO / FEATURE -->
+  <section class="hero">
+    <div class="anime-card">
+      <div class="anime-info">
+        <h2>Featured — Anime Picks</h2>
+        <p>Curated anime picks and latest updates — tap a thumbnail to play.</p>
+      </div>
+      <div class="anime-img">
+        <video src="https://files.catbox.moe/oe0pgq.mp4" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- RECENT / TOP -->
+  <section class="recent">
+    <h3>Recently Updated Anime</h3>
+    <div id="recent-anime-list" class="anime-list"></div>
+  </section>
+
+  <section class="top-5-anime">
+    <h3>Top 5 Anime</h3>
+    <div class="anime-list top-anime-list"></div>
+  </section>
+
+  <!-- THUMBNAILS -->
+  <section class="anime-thumbnails">
+    <h3>Anime Movies</h3>
+    <div class="anime-thumbs-container">
+
+      <!-- Solo Leveling (mp4) -->
+      <div class="anime-thumb" data-id="solo" onclick="openMovieById('solo')">
+        <img src="https://files.catbox.moe/bsasma.jpg" alt="Solo Leveling Thumbnail">
+        <p>Solo Leveling</p>
+      </div>
+
+      <!-- Naruto (mp4) -->
+      <div class="anime-thumb" data-id="naruto" onclick="openMovieById('naruto')">
+        <img src="https://files.catbox.moe/rhv8xn.jpg" alt="Naruto Thumbnail">
+        <p>Naruto</p>
+      </div>
+
+      <!-- Demon Slayer (mp4) -->
+      <div class="anime-thumb" data-id="demon" onclick="openMovieById('demon')">
+        <img src="https://files.catbox.moe/kivtl4.jpg" alt="Demon Slayer Thumbnail">
+        <p>Demon Slayer</p>
+      </div>
+
+      <!-- Death Note (YouTube) -->
+      <div class="anime-thumb" data-id="death" onclick="openMovieById('death')">
+        <img src="https://upload.wikimedia.org/wikipedia/en/6/6f/Death_Note_Vol_1.jpg" alt="Death Note Thumbnail">
+        <p>Death Note</p>
+      </div>
+
+      <!-- More bracketed thumbnails (empty slots for you to fill) -->
+      <div class="anime-thumb placeholder"><img src="https://files.catbox.moe/placeholder.jpg" alt="More"><p>More</p></div>
+      <div class="anime-thumb placeholder"><img src="https://files.catbox.moe/placeholder.jpg" alt="More"><p>More</p></div>
+
+    </div>
+  </section>
+
+  <!-- VIDEO MODAL (contains both iframe and video tag, JS toggles) -->
+  <div id="videoModal" class="video-modal" aria-hidden="true">
+    <div class="modal-content">
+      <span id="closeModal" class="close-btn" title="Close">✕</span>
+
+      <!-- iframe for YouTube embeds -->
+      <div id="iframeWrap" style="display:none;">
+        <iframe id="previewIframe" width="100%" height="480" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+
+      <!-- html5 video for mp4s -->
+      <div id="videoWrap" style="display:none;">
+        <video id="previewVideo" width="100%" height="480" controls></video>
+      </div>
+
+      <!-- Neon controls: prev / episodes / next -->
+      <div class="video-controls">
+        <button id="prevBtn" class="neon-btn small" title="Previous">⏮</button>
+        <div id="episodeList" class="episode-list"></div>
+        <button id="nextBtn" class="neon-btn small" title="Next">⏭</button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>漏 2025 DRX Anime Clone | All Rights Reserved</p>
+    <p>Disclaimer: This site does not store any files on its server. All contents are provided by non-affiliated third parties.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
