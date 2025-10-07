@@ -161,29 +161,30 @@ function closePlayer() {
 
 // Simple slider setup for hero (keeps your existing behavior)
 document.addEventListener('DOMContentLoaded', () => {
+  // --- Hero slider code ---
   const slides = document.querySelectorAll('.slide');
   let current = 0;
-  if (slides.length === 0) return;
-  slides.forEach((s,i)=>{
-    const type = s.dataset.type;
-    const src = s.dataset.src;
-    if (type === 'video') {
-      const vid = document.createElement('video');
-      vid.src = src;
-      vid.autoplay = true; vid.loop = true; vid.muted = true;
-      vid.style.width = '120%';
-      s.appendChild(vid);
-    } else {
-      s.style.backgroundImage = `url(${src})`;
-    }
-  });
-  slides[current].classList.add('active');
-  setInterval(()=>{
-    slides[current].classList.remove('active');
-    current = (current + 1) % slides.length;
+  if (slides.length !== 0) {
+    slides.forEach((s,i)=>{
+      const type = s.dataset.type;
+      const src = s.dataset.src;
+      if (type === 'video') {
+        const vid = document.createElement('video');
+        vid.src = src;
+        vid.autoplay = true; vid.loop = true; vid.muted = true;
+        vid.style.width = '120%';
+        s.appendChild(vid);
+      } else {
+        s.style.backgroundImage = `url(${src})`;
+      }
+    });
     slides[current].classList.add('active');
-  }, 4500);
-});
+    setInterval(()=>{
+      slides[current].classList.remove('active');
+      current = (current + 1) % slides.length;
+      slides[current].classList.add('active');
+    }, 4500);
+  }
 
 // small search (client-side)
 const searchInput = document.getElementById('searchInput');
