@@ -108,17 +108,23 @@ function openVideoModal(movie) {
 // change episode by index
 
 stopBtn.addEventListener('click', () => {
-  // Stop MP4 video
-  previewVideo.pause();
-  previewVideo.removeAttribute('src');
-  previewVideo.load();
+    // Stop MP4
+    previewVideo.pause();
+    previewVideo.removeAttribute('src');
+    previewVideo.load();
 
-  // Stop YouTube iframe
-  previewIframe.src = '';
+    // Stop YouTube
+    previewIframe.src = '';
 
-  // Hide modal
-  videoModal.style.display = 'none';
-  videoModal.setAttribute('aria-hidden', 'true');
+    // Hide modal
+    videoModal.style.display = 'none';
+    videoModal.setAttribute('aria-hidden', 'true');
+  });
+
+  closeModal.addEventListener('click', () => stopBtn.click());
+  videoModal.addEventListener('click', (e) => {
+    if(e.target === videoModal) stopBtn.click();
+  });
 });
 
 function changeEpisode(index) {
